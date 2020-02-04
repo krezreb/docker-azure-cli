@@ -1,4 +1,4 @@
-FROM python:3-slim-buster
+FROM debian:buster-slim
 
 # based on https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-apt?view=azure-cli-latest
 RUN apt update && \
@@ -9,6 +9,7 @@ RUN apt update && \
     apt update && apt install -y azure-cli && \
     apt clean all
 
+# install azcopy
 RUN mkdir -p /tmp/azcopy && cd /tmp/azcopy && curl https://azcopyvnext.azureedge.net/release20200124/azcopy_linux_amd64_10.3.4.tar.gz -o azcopy.tar.gz && \
     mkdir azcopy && \
     tar -C azcopy -zxf azcopy.tar.gz && \
