@@ -19,7 +19,8 @@ RUN mkdir -p /tmp/azcopy && cd /tmp/azcopy && curl https://azcopyvnext.azureedge
     tar -C azcopy -zxf azcopy.tar.gz && \
     cd az*/az* && \
     chmod +x azcopy && \
-    mv azcopy /usr/bin && \
+    mkdir /root/bin && \
+    mv azcopy /root/bin && \
     rm -rf /tmp/azcopy
 
 # install blobfuse
