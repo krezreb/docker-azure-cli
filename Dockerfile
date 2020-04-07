@@ -27,7 +27,7 @@ RUN wget https://github.com/Azure/azure-storage-fuse/releases/download/v${BLOBFU
     dpkg -i blobfuse-${BLOBFUSE_VERSION}-stretch.deb && \
     rm -f blobfuse-${BLOBFUSE_VERSION}-stretch.deb
 
-ARG DIND=1
+ARG DIND=0
 
 
 # docker in docker
