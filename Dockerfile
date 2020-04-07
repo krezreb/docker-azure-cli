@@ -2,7 +2,7 @@ FROM debian:buster-slim
 
 ENV AZCOPY_VERSION=10.3.4
 ENV BLOBFUSE_VERSION=1.1.1
-ARG DIND=0
+ARG DIND=1
 
 # based on https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-apt?view=azure-cli-latest
 RUN apt update -y && \
