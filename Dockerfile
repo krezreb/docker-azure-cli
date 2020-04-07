@@ -2,7 +2,6 @@ FROM debian:buster-slim
 
 ENV AZCOPY_VERSION=10.3.4
 ENV BLOBFUSE_VERSION=1.1.1
-ARG DIND=1
 
 # based on https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-apt?view=azure-cli-latest
 RUN apt update -y && \
@@ -27,6 +26,8 @@ RUN mkdir -p /tmp/azcopy && cd /tmp/azcopy && curl https://azcopyvnext.azureedge
 RUN wget https://github.com/Azure/azure-storage-fuse/releases/download/v${BLOBFUSE_VERSION}/blobfuse-${BLOBFUSE_VERSION}-stretch.deb && \
     dpkg -i blobfuse-${BLOBFUSE_VERSION}-stretch.deb && \
     rm -f blobfuse-${BLOBFUSE_VERSION}-stretch.deb
+
+ARG DIND=1
 
 
 # docker in docker
