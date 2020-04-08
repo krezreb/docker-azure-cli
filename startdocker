@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -eu 
+
+echo -n starting docker... 
+
+nohup dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 > /dev/null 2>&1 &
+
+while :
+do 
+    docker ps > /dev/null 2>&1 && break || sleep 2
+done
+
+echo DONE 
+
+exec "$@"

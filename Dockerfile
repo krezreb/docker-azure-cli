@@ -27,15 +27,11 @@ RUN wget https://github.com/Azure/azure-storage-fuse/releases/download/v${BLOBFU
     dpkg -i blobfuse-${BLOBFUSE_VERSION}-stretch.deb && \
     rm -f blobfuse-${BLOBFUSE_VERSION}-stretch.deb
 
-ARG DIND=1
-
-
 # docker in docker
-RUN if [ $DIND = 1 ] ; then \
-    curl -fsSL https://get.docker.com -o get-docker.sh \
-    && sh get-docker.sh ; \
-    echo "#!/usr/bin/env bash\necho starting docker... \nnohup dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 &\nsleep 3" > /bin/startdocker ; \
-    chmod +x /bin/startdocker ; \
-    echo startdocker >> ~/.bashrc ; \
-    fi
+RUN curl -fsSL https://get.docker.com -o get-docker.sh \
+    && sh get-docker.sh 
 
+ADD startdocker /bin
+RUN chmod +x /bin/startdocker
+
+ENTRYPOINT ["/bin/startdocker"]
