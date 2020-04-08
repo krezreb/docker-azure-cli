@@ -30,6 +30,8 @@ RUN wget https://github.com/Azure/azure-storage-fuse/releases/download/v${BLOBFU
 # docker in docker
 RUN curl -fsSL https://get.docker.com -o get-docker.sh \
     && sh get-docker.sh 
+    
+RUN apt install -y procps
 
 ADD startdocker /bin
 RUN chmod +x /bin/startdocker
