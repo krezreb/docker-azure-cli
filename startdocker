@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 
-set -eu 
+set -e
 
 echo -n starting docker... 
 
-nohup dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375  > nohup.out 2>&1 &
+nohup dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375  > dockerd.out 2>&1 &
 
 while :
 do 
     docker ps > /dev/null 2>&1 && break || sleep 2
-    ps | grep dockerd > /dev/null || (echo "docker failed to start"; cat nohup.out ; exit 1)
+    ps | grep dockerd > /dev/null || (echo "FAIL, see logs below:"; cat dockerd.out ; exit 1)
 done
 
-echo DONE 
+echo SUCCESS 
+
+set +e
 
 exec "$@"
