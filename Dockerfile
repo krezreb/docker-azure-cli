@@ -1,6 +1,7 @@
 FROM debian:buster-slim
 
-ENV AZCOPY_URL=https://azcopyvnext.azureedge.net/release20200425/azcopy_linux_amd64_10.4.1.tar.gz
+# resolve http 301 of https://aka.ms/downloadazcopy-v10-linux to get url below
+ENV AZCOPY_URL=https://azcopyvnext.azureedge.net/release20200501/azcopy_linux_amd64_10.4.3.tar.gz
 ENV BLOBFUSE_VERSION=1.1.1
 
 # based on https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-apt?view=azure-cli-latest
